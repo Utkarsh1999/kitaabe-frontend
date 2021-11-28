@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { CategoryCard, Footer } from "../components";
 
@@ -18,13 +19,15 @@ const LandingPage = () => {
           <Row>
             <Col md={2}></Col>
             <Col md={4}>
-              <Button
-                className="color-primary no-border"
-                variant="primary"
-                type="submit"
-              >
-                Explore
-              </Button>
+              <Link to="/explore">
+                <Button
+                  className="color-primary no-border"
+                  variant="primary"
+                  to="/explore"
+                >
+                  Explore
+                </Button>
+              </Link>
             </Col>
             <Col md={4}>
               <Button

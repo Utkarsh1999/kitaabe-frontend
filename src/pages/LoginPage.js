@@ -1,37 +1,65 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Form, Button } from "react-bootstrap";
 
-const LoginPage = () => {
+import { Link } from "react-router-dom";
+
+import { SIGNIN, signIn, signUp } from "../store/actions/auth.actions";
+
+const SignInPage = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const credentials = {
+      email: document.getElementById("username").value,
+      password: document.getElementById("password").value,
+    };
+
+    dispatch(signIn.request(credentials));
+  };
+
   return (
     <div className="app">
       <Col md={6} className="mx-auto mt-4">
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Login</h1>
           <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter email"
+                // id="username"
+              />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                // id="password"
+              />
             </Form.Group>
 
             <Button
-              className="full-btn color-primary no-border"
+              className="full-btn color-primary no-border mx-auto"
               variant="primary"
-              type="submit"
+              onClick={handleSubmit}
             >
               Login
             </Button>
           </Form>
+          <p className="text-dark mx-auto">
+            Need a new username and password?{" "}
+            <Link className="text-dark" to="/register">
+              Register now!
+            </Link>
+          </p>
         </Row>
       </Col>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignInPage;

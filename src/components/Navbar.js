@@ -10,6 +10,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 
 import { Link } from "react-router-dom";
 
@@ -68,6 +69,7 @@ const NavBar = () => {
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
+      <ToastContainer autoClose={2000} />
     </Navbar>
   );
 };
