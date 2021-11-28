@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
 import { Routes, Route, Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 // import custom pages
 import {
   LandingPage,
@@ -19,8 +20,17 @@ import {
 
 // import custom components
 import { NavBar } from "./components/index";
+import {
+  fetchCategories,
+  fetchSubCategories,
+} from "./store/actions/catalogue.actions";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCategories.request());
+    dispatch(fetchSubCategories.request());
+  }, []);
   return (
     <div className="container-fluid app">
       <NavBar />
