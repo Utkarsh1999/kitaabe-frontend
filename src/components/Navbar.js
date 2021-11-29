@@ -69,7 +69,12 @@ const NavBar = () => {
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer
+        position="bottom-right"
+        draggable
+        newestOnTop="true"
+        autoClose={2000}
+      />
     </Navbar>
   );
 };

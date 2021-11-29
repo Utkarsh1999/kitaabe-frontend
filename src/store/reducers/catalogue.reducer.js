@@ -1,6 +1,7 @@
 import * as CatalogueActions from "../actions/catalogue.actions";
 
 const initialState = {
+  items: [],
   categories: [
     {
       id: "amdjfbkadjbf1",
@@ -29,8 +30,10 @@ const initialState = {
       name: "other",
     },
   ],
+  errorInItems: null,
   errorInCategories: null,
   errorInSubCategories: null,
+  loadingItems: false,
   loadingCategories: false,
   loadingSubCategories: false,
 };
@@ -71,6 +74,23 @@ export default function (state = initialState, action) {
         ...state,
         loadingSubCategories: false,
         errorInSubCategories: action.payload,
+      };
+    case CatalogueActions.FETCH_ALL_ITEMS.REQUEST:
+      return {
+        ...state,
+        loadingItems: true,
+      };
+    case CatalogueActions.FETCH_ALL_ITEMS.SUCCESS:
+      return {
+        ...state,
+        loadingItems: false,
+        items: action.payload.data,
+      };
+    case CatalogueActions.FETCH_ALL_ITEMS.FAILURE:
+      return {
+        ...state,
+        loadingItems: false,
+        errorInItems: action.payload,
       };
     default:
       return state;

@@ -1,6 +1,6 @@
 import { DropdownButton, Dropdown, Col } from "react-bootstrap";
 
-const FilterDropdown = ({ filterName, filterItems }) => {
+const FilterDropdown = ({ filterName, filterItems, inputHandler }) => {
   if (filterName !== undefined) {
     return (
       <Col md="auto" className="mt-4 mb-4 mr-2">
@@ -12,8 +12,17 @@ const FilterDropdown = ({ filterName, filterItems }) => {
                   key={idx}
                   as="button"
                   className="full-btn color-primary no-border"
+                  value={item._id}
+                  onClick={inputHandler(
+                    filterName,
+                    item.category_name == undefined
+                      ? item.subcategory_name
+                      : item.category_name
+                  )}
                 >
-                  {item}
+                  {item.category_name == undefined
+                    ? item.subcategory_name
+                    : item.category_name}
                 </Dropdown.Item>
               );
             })}

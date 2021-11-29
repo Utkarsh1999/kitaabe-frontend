@@ -3,10 +3,12 @@ import * as ItemActions from "../actions/item.actions";
 const initialState = {
   items: [],
   images: [],
+  errorItems: null,
   errorSavingItems: null,
   errorUploadingImages: null,
   savingItem: false,
   savingImages: false,
+  loadingItems: false,
 };
 
 export default function (state = initialState, action) {
@@ -44,6 +46,23 @@ export default function (state = initialState, action) {
         ...state,
         savingImages: false,
         errorSavingImages: action.payload,
+      };
+    case ItemActions.FETCH_ITEMS_BY_USERID.REQUEST:
+      return {
+        ...state,
+        loadingItems: true,
+      };
+    case ItemActions.FETCH_ITEMS_BY_USERID.SUCCESS:
+      return {
+        ...state,
+        loadingItems: false,
+        items: action.payload.data,
+      };
+    case ItemActions.FETCH_ITEMS_BY_USERID.FAILURE:
+      return {
+        ...state,
+        loadingItems: false,
+        errorItems: action.payload,
       };
     default:
       return state;

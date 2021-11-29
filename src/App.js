@@ -15,7 +15,7 @@ import {
   SignupPage,
   ListItemPage,
   ProductPage,
-  ViewItemPage,
+  ViewListedItemsPage,
 } from "./pages/index";
 
 // import custom components
@@ -43,7 +43,7 @@ const App = () => {
         {/* TODO: change product to productId */}
         <Route path="/view/productId" element={<ProductPage />} />
 
-        <Route path="/view/items" element={<ViewItemPage />} />
+        <Route path="/view/items" element={<ViewListedItemsPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route path="about" element={<About />} /> */}

@@ -14,7 +14,7 @@ export const ItemApi = {
   getItemByItemId: (itemId) => {
     return null;
   },
-  getAllItems: (filter) => {
-    return axiosInstance.get("/api/subcategory/all");
+  getItemsByUserId: (userId) => {
+    return axiosInstance.get(`/api/item/seller/${userId}`);
   },
 };

@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 import ListItemPage from "./ListItemPage";
 import ProductPage from "./ProductPage";
-import ViewItemPage from "./ViewItemPage";
+import ViewListedItemsPage from "./ViewListedItemsPage";
 
 export {
   LandingPage,
@@ -15,5 +15,5 @@ export {
   SignupPage,
   ListItemPage,
   ProductPage,
-  ViewItemPage,
+  ViewListedItemsPage,
 };

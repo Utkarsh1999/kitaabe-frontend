@@ -1,10 +1,15 @@
 import * as AuthActions from "../actions/auth.actions";
 
+// TODO: remove cred default values
 const initialState = {
   authenticated: false,
   validating: false,
   error: null,
-  cred: null,
+  cred: {
+    _id: "61a30da20b474d41842d05e7",
+    email: "ut@test.com",
+    password: "123456",
+  },
   signingUp: false,
   errorInSignup: null,
 };

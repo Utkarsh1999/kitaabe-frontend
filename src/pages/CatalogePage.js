@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Row, Col, Button } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { Row, Col, Button, Form, FormControl, Badge } from "react-bootstrap";
 import { ItemCard, FilterDropdown } from "../components";
 
+import { getAllItems } from "../store/actions/catalogue.actions";
+
 const CatalogePage = () => {
+  const dispatch = useDispatch();
   const [cardItems, setCardItems] = useState([
     {
       name: "item name",
@@ -48,82 +52,106 @@ const CatalogePage = () => {
     },
   ]);
 
-  const [filters, setFilters] = useState([
-    {
-      name: "filterName filterName filterName",
-      items: ["filter 1", "filter 2", "filter 3", "filter 4"],
-    },
-    {
-      name: "filterName",
-      items: ["filter 1", "filter 2", "filter 3", "filter 4"],
-    },
-    {
-      name: "filterName",
-      items: ["filter 1", "filter 2", "filter 3", "filter 4"],
-    },
-    {
-      name: "filterName",
-      items: ["filter 1", "filter 2", "filter 3", "filter 4"],
-    },
-  ]);
+  const { categories, subCategories, items } = useSelector(
+    (state) => state.catalogue
+  );
+
+  const [pills, setPills] = useState({
+    category_id: null,
+    subcategory_id: null,
+  });
+
+  const [filterValue, setFilterValue] = useState({
+    search: "",
+    category_id: "",
+    subcategory_id: "",
+  });
+
+  const inputHandler =
+    (name, displayName = null) =>
+    (e) => {
+      e.preventDefault();
+      setPills({
+        ...pills,
+        [name]: displayName,
+      });
+      setFilterValue({
+        ...filterValue,
+        [name]: e.target.value,
+      });
+    };
+
+  const applyFilters = () => {
+    dispatch(getAllItems.request(filterValue));
+  };
+  const clearFilters = () => {
+    setPills({
+      category_id: null,
+      subcategory_id: null,
+    });
+    setFilterValue({
+      search: "",
+      category_id: "",
+      subcategory_id: "",
+    });
+  };
 
   return (
     <div>
       <h1 className="text-center"> Explore</h1>
 
-      {/* category buttons */}
-      <Col md={6} className="mx-auto">
-        <Row xs={1} md={12} className="g-2 mt-2 mb-2">
-          <Col md={6}>
-            <Button
-              className="full-btn color-primary no-border"
-              variant="primary"
-              type="submit"
-            >
-              Notes
-            </Button>
-          </Col>
-          <Col md={6}>
-            <Button
-              className="full-btn color-primary no-border"
-              variant="primary"
-              type="submit"
-            >
-              Used Books
-            </Button>
-          </Col>
-          {/* <Button>Notes</Button> */}
-        </Row>
-      </Col>
-
       {/* filter buttons */}
-      <Row md={12} style={{ flexDirection: "row-reverse" }}>
-        {filters.map((filter, idx) => {
-          return (
-            <FilterDropdown
-              key={idx}
-              filterName={filter.name}
-              filterItems={filter.items}
+      <Row md={6} className="mx-auto" style={{ flexDirection: "row" }}>
+        <FilterDropdown
+          inputHandler={inputHandler}
+          filterName="subcategory_id"
+          filterItems={subCategories}
+        />
+        <FilterDropdown
+          inputHandler={inputHandler}
+          filterName="category_id"
+          filterItems={categories}
+        />
+        <Col md="auto" className="mt-4 mb-4 mr-2">
+          <Form className="d-flex">
+            <FormControl
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+              value={filterValue.search}
+              onChange={inputHandler("search")}
             />
-          );
-        })}
+            <Button variant="outline-success" onClick={applyFilters}>
+              Search
+            </Button>
+          </Form>
+        </Col>
+        <Col md="auto" className="mt-4 mb-4 mr-2">
+          <Button variant="outline-info" onClick={clearFilters}>
+            Clear Filters
+          </Button>
+        </Col>
       </Row>
-
+      <Row md="2">
+        <Col md={1}>
+          <Badge pill bg="primary">
+            {pills.category_id}
+          </Badge>{" "}
+        </Col>
+        <Col md={1}>
+          <Badge pill bg="secondary">
+            {pills.subcategory_id}
+          </Badge>
+        </Col>
+      </Row>
       {/* item cards */}
       <Col md={10} className="mx-auto">
         <Row className="">
-          {cardItems.map((cardDetail, idx) => {
-            return (
-              <ItemCard
-                className="mt-2 mb-2"
-                key={idx}
-                name={cardDetail.name}
-                desc={cardDetail.desc}
-                category={cardDetail.category}
-                img={cardDetail.img}
-              />
-            );
-          })}
+          {items &&
+            items.map((item, idx) => {
+              return <ItemCard className="mt-2 mb-2" key={idx} item={item} />;
+            })}
         </Row>
       </Col>
     </div>

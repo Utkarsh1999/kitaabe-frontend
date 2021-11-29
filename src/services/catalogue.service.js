@@ -8,4 +8,7 @@ export const CatalogueApi = {
   getSubCategories: () => {
     return axiosInstance.get("/api/subcategory/all");
   },
+  getAllItems: (filter) => {
+    return axiosInstance.post("/api/item/all", filter);
+  },
 };
