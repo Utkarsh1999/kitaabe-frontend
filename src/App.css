@@ -77,6 +77,10 @@ a {
   height: 100%;
 }
 
+.mt-2em {
+  margin-top: 2em;
+}
+
 /* misc not usefull */
 
 .bg-red {

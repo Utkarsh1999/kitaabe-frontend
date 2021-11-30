@@ -12,6 +12,7 @@ const ListItemPage = () => {
   const [formData, setFormData] = useState({
     item_name: null,
     item_description: null,
+    contact_info: null,
     price: null,
     seller_id: null,
     available_in_city: null,
@@ -57,6 +58,19 @@ const ListItemPage = () => {
                 onChange={inputHandler("item_description")}
                 placeholder="This is scientific calculator"
               />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="description">
+              <Form.Label>Contact Information</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={inputHandler("contact_info")}
+                placeholder="Contact information, e.g. contact no, or/and email address"
+              />
+              <Form.Text className="text-muted">
+                Note: This will be available publicly on our platform to the
+                registered users.
+              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="price">

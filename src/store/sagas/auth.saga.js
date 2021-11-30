@@ -9,7 +9,7 @@ function* validateCredentials(action) {
       action.payload
     );
     // localStorage.setItem("token", data.access_token);
-    yield put(signIn.success(data.access_token));
+    yield put(signIn.success(data));
   } catch (e) {
     yield put(signIn.failure(e.data));
   }

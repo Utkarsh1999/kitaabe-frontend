@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Form, FormControl, Badge } from "react-bootstrap";
 import { ItemCard, FilterDropdown } from "../components";
@@ -7,50 +7,10 @@ import { getAllItems } from "../store/actions/catalogue.actions";
 
 const CatalogePage = () => {
   const dispatch = useDispatch();
-  const [cardItems, setCardItems] = useState([
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-    {
-      name: "item name",
-      desc: "item desc",
-      category: "item category",
-      img: "https://picsum.photos/200",
-    },
-  ]);
+
+  useEffect(() => {
+    dispatch(getAllItems.request(filterValue));
+  }, []);
 
   const { categories, subCategories, items } = useSelector(
     (state) => state.catalogue

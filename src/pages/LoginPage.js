@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form, Button, Image } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
@@ -19,8 +19,8 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="app">
-      <Col md={6} className="mx-auto mt-4">
+    <div className="app row">
+      <Col md={4} className="mx-auto mt-4">
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Login</h1>
           <Form>
@@ -52,11 +52,14 @@ const SignInPage = () => {
           </Form>
           <p className="text-dark mx-auto">
             Need a new username and password?{" "}
-            <Link className="text-dark" to="/register">
+            <Link className="text-dark" to="/signup">
               Register now!
             </Link>
           </p>
         </Row>
+      </Col>
+      <Col md={6} classNam="mt-4 mt-2em">
+        <Image src="https://picsum.photos/500/500" fluid />
       </Col>
     </div>
   );

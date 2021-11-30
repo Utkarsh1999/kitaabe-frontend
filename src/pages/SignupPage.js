@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form, Button, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // import actions
 import { SIGNUP, signUp } from "../store/actions/auth.actions";
@@ -37,8 +38,8 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="app" onSubmit={submitHandler}>
-      <Col md={6} className="mx-auto mt-4">
+    <div className="app row">
+      <Col md={4} className="mx-auto mt-4">
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Sign Up</h1>
           <Form>
@@ -104,8 +105,16 @@ const SignupPage = () => {
               SignUp
             </Button>
           </Form>
-          {JSON.stringify(formData)}
         </Row>
+        <p className="text-dark mx-auto">
+          Existing user?{" "}
+          <Link className="text-dark" to="/login">
+            Login!
+          </Link>
+        </p>
+      </Col>
+      <Col md={6} classNam="mt-4 mt-2em">
+        <Image src="https://picsum.photos/500/500" fluid />
       </Col>
     </div>
   );

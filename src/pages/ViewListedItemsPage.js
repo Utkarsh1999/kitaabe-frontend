@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ItemTable } from "../components";
 import { getItemsByUserId } from "../store/actions/item.actions";
 
+import { Col } from "react-bootstrap";
+
 const ViewItemPage = () => {
   const dispatch = useDispatch();
   const { cred } = useSelector((state) => state.auth);
@@ -17,7 +19,9 @@ const ViewItemPage = () => {
         This page will display all the listed items of a user {cred.email} -{" "}
         {cred._id}
       </h1>
-      {items && <ItemTable items={items} />}
+      <Col md={10} className="mx-auto">
+        {items && <ItemTable items={items} />}
+      </Col>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const ItemApi = {
     return axiosInstance.post("api/item", item);
   },
   getItemByItemId: (itemId) => {
-    return null;
+    return axiosInstance.get(`/api/item/id/${itemId}`);
   },
   getItemsByUserId: (userId) => {
     return axiosInstance.get(`/api/item/seller/${userId}`);

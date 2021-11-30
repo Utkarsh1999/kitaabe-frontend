@@ -18,7 +18,7 @@ const LandingPage = () => {
           </Row>
           <Row>
             <Col md={2}></Col>
-            <Col md={4}>
+            <Col md={8}>
               <Link to="/explore">
                 <Button
                   className="color-primary no-border"
@@ -29,22 +29,13 @@ const LandingPage = () => {
                 </Button>
               </Link>
             </Col>
-            <Col md={4}>
-              <Button
-                className="full-btn color-primary no-border"
-                variant="primary"
-                type="submit"
-              >
-                View Wishlist
-              </Button>
-            </Col>
+
             <Col md={2} className="mx-auto"></Col>
           </Row>
         </Col>
       </header>
 
-      <CategoryCard />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

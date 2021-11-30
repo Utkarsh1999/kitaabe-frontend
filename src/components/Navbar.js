@@ -1,4 +1,4 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 import {
   Navbar,
@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const { authenticated } = useSelector((state) => state.auth);
+
   return (
     <Navbar bg="light" expand={false}>
       <Container fluid>
@@ -37,13 +39,20 @@ const NavBar = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3 nav-links">
               <Link to="/">Home</Link>
+              {authenticated === true ? (
+                <>
+                  <Link to="/profile">My Account</Link>
+                  <Link to="/item/new">List Item</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Signup</Link>
+                </>
+              )}
+
               <Link to="/explore">Explore</Link>
-              <Link to="/profile">My Account</Link>
-              <Link to="/item/new">List Item</Link>
-              <Link to="/cart">Cart</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
-              <Link to="/view/productId">Product Page</Link>
+
               <Link to="/view/items">Listed Items Page</Link>
 
               {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">

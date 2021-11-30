@@ -27,6 +27,10 @@ export default function (state = initialState, action) {
         ...state,
         authenticated: true,
         validating: false,
+        cred: {
+          ...state.cred,
+          _id: action.payload.id,
+        },
       };
     case AuthActions.SIGNIN.FAILURE:
       return {
