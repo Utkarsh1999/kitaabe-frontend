@@ -35,7 +35,7 @@ const NavBar = () => {
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
+            <Nav className="justify-content-end flex-grow-1 pe-3 nav-links">
               <Link to="/">Home</Link>
               <Link to="/explore">Explore</Link>
               <Link to="/profile">My Account</Link>

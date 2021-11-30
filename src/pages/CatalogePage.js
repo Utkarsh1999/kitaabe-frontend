@@ -81,7 +81,8 @@ const CatalogePage = () => {
       });
     };
 
-  const applyFilters = () => {
+  const applyFilters = (e) => {
+    e.preventDefault();
     dispatch(getAllItems.request(filterValue));
   };
   const clearFilters = () => {
@@ -122,8 +123,12 @@ const CatalogePage = () => {
               value={filterValue.search}
               onChange={inputHandler("search")}
             />
-            <Button variant="outline-success" onClick={applyFilters}>
-              Search
+            <Button
+              variant="outline-success"
+              type="submit"
+              onClick={applyFilters}
+            >
+              Search/Apply Filters
             </Button>
           </Form>
         </Col>
@@ -150,7 +155,14 @@ const CatalogePage = () => {
         <Row className="">
           {items &&
             items.map((item, idx) => {
-              return <ItemCard className="mt-2 mb-2" key={idx} item={item} />;
+              return (
+                <ItemCard
+                  className="mt-2 mb-2"
+                  key={idx}
+                  item={item}
+                  img={"https://picsum.photos/200"}
+                />
+              );
             })}
         </Row>
       </Col>

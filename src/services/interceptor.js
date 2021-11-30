@@ -2,7 +2,7 @@ import axios from "axios";
 // import { BASE_URL } from "../Constants/API";
 
 const axiosInstance = axios.create({
-  baseURL: "http://kitaabe.herokuapp.com",
+  baseURL: "https://kitaabe.herokuapp.com",
 });
 
 const requestHandler = (request) => {

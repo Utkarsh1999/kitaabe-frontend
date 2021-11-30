@@ -40,10 +40,9 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/item/new" element={<ListItemPage />} />
-        {/* TODO: change product to productId */}
-        <Route path="/view/productId" element={<ProductPage />} />
-
         <Route path="/view/items" element={<ViewListedItemsPage />} />
+        {/* TODO: change product to productId */}
+        <Route path="/view/product/:itemId" element={<ProductPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route path="about" element={<About />} /> */}

@@ -1,7 +1,10 @@
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Badge, Button } from "react-bootstrap";
+
+import { Link } from "react-router-dom";
 
 const ItemCard = (props) => {
   const {
+    _id,
     item_name,
     item_description,
     category_id,
@@ -9,15 +12,33 @@ const ItemCard = (props) => {
     available_in_city,
   } = props.item;
   return (
-    <Col md={3} className=" mt-4 mb-4">
+    <Col md={3} className={props.className}>
       <Card>
-        {/* <Card.Img variant="top" src={img} /> */}
+        {/* <Card.Img variant="left" src={props.img} /> */}
         <Card.Body>
-          <Card.Title>{item_name}</Card.Title>
-          <Card.Title>{category_id}</Card.Title>
-          <Card.Title>{subcategory_id}</Card.Title>
-          <Card.Text>{item_description}</Card.Text>
-          <Card.Text>{available_in_city}</Card.Text>
+          <Card.Title className="text-capitalize">
+            <Link to={`/view/product/${_id}`} className="pl-0">
+              {item_name}
+            </Link>
+          </Card.Title>
+
+          <Card.Subtitle className="text-capitalize text-muted text-wrap">
+            {category_id}
+            {", "}
+            {subcategory_id}
+          </Card.Subtitle>
+          <Card.Text className="text-capitalize mb-2">
+            <strong>Available Location</strong> : {available_in_city}
+          </Card.Text>
+          <Card.Text className="card-desc">{item_description}</Card.Text>
+          <Link
+            as="button"
+            to={`/view/product/${_id}`}
+            className="btn btn-warning full-btn color-primary no-border"
+            size="sm"
+          >
+            View Item
+          </Link>
         </Card.Body>
       </Card>
     </Col>

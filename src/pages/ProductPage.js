@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useParams } from "react-router";
 
 import { Row, Col, Button, Image } from "react-bootstrap";
 
+//this component need productId in urlparam
 const ProductPage = () => {
+  const { itemId } = useParams();
+
   const [details, setDetails] = useState({
     name: "Product Name",
     price: "150",
@@ -23,6 +27,7 @@ const ProductPage = () => {
   return (
     <Row className="container mt-4">
       <Col>
+        {itemId}
         <Row md={12}>
           <Col md={2}>
             {details.images.map((img, idx) => (
