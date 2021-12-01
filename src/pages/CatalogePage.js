@@ -62,7 +62,8 @@ const CatalogePage = () => {
       <h1 className="text-center"> Explore</h1>
 
       {/* filter buttons */}
-      <Row md={8} className="mx-auto" style={{ flexDirection: "row" }}>
+
+      <Col md={10} className="mx-auto row">
         <FilterDropdown
           inputHandler={inputHandler}
           filterName="subcategory_id"
@@ -73,7 +74,7 @@ const CatalogePage = () => {
           filterName="category_id"
           filterItems={categories}
         />
-        <Col md="auto" className="mt-4 mb-4 mr-2">
+        <Col md="6" className="mt-4 mb-4 mr-2">
           <Form className="d-flex">
             <FormControl
               type="search"
@@ -85,6 +86,7 @@ const CatalogePage = () => {
             />
             <Button
               variant="outline-success"
+              className="w-100pc"
               type="submit"
               onClick={applyFilters}
             >
@@ -97,19 +99,20 @@ const CatalogePage = () => {
             Clear Filters
           </Button>
         </Col>
-      </Row>
-      <Row md="2">
-        <Col md={1}>
+      </Col>
+      <Col md="2" className="mx-auto row mb-4">
+        <Col md={"auto"}>
           <Badge pill bg="primary">
             {pills.category_id}
           </Badge>{" "}
         </Col>
-        <Col md={1}>
+        <Col md={"auto"}>
           <Badge pill bg="secondary">
             {pills.subcategory_id}
           </Badge>
         </Col>
-      </Row>
+      </Col>
+
       {/* item cards */}
       <Col md={10} className="mx-auto">
         <Row className="">

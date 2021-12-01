@@ -35,6 +35,10 @@ rest will be white shades
   color: var(--hover-color);
 }
 
+.w-100pc {
+  width: 100%;
+}
+
 .btn-primary {
   width: 100%;
   border: none;
