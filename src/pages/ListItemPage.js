@@ -17,6 +17,7 @@ const ListItemPage = () => {
   const dispatch = useDispatch();
   const { categories, subCategories } = useSelector((state) => state.catalogue);
   const { savingItem, itemId } = useSelector((state) => state.item);
+  const { cred } = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
     item_name: null,
@@ -24,7 +25,7 @@ const ListItemPage = () => {
     image: [],
     contact_info: null,
     price: null,
-    seller_id: null,
+    seller_id: cred._id,
     available_in_city: null,
     category_id: null,
     subcategory_id: null,
