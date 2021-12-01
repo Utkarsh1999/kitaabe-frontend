@@ -1,21 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "📚 Kitaabe",
+  "name": "Kitaabe: buy and sell books and notes",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://res.cloudinary.com/dzwj8f2jn/image/upload/v1638366409/book-removebg-preview_jjbgfc.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",

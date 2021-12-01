@@ -12,7 +12,11 @@ const FilterDropdown = ({ filterName, filterItems, inputHandler }) => {
                   key={idx}
                   as="button"
                   className="full-btn color-primary no-border"
-                  value={item._id}
+                  value={
+                    item.category_name == undefined
+                      ? item.subcategory_name
+                      : item.category_name
+                  }
                   onClick={inputHandler(
                     filterName,
                     item.category_name == undefined

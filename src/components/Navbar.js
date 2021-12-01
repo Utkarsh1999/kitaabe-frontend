@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   Navbar,
@@ -13,16 +13,18 @@ import {
 import { ToastContainer } from "react-toastify";
 
 import { Link } from "react-router-dom";
+import { signOut } from "../store/actions/auth.actions";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const { authenticated } = useSelector((state) => state.auth);
 
   return (
-    <Navbar bg="light" expand={false}>
+    <Navbar bg="dark" expand={false}>
       <Container fluid>
         <Navbar.Brand>
-          <Link to="/">
-            <strong>KITAABE</strong>
+          <Link to="/" className="text-light">
+            📚<strong>KITAABE</strong>
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -33,7 +35,7 @@ const NavBar = () => {
         >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title id="offcanvasNavbarLabel" className="text-center">
-              <strong>KITAABE</strong>
+              📚 <strong>KITAABE</strong>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
@@ -43,17 +45,21 @@ const NavBar = () => {
                 <>
                   <Link to="/profile">My Account</Link>
                   <Link to="/item/new">List Item</Link>
+                  <Link to="/view/items">Listed Items Page</Link>
+                  <Button
+                    className="btn btn-danger"
+                    onClick={() => dispatch(signOut.request())}
+                  >
+                    Sign Out
+                  </Button>
                 </>
               ) : (
                 <>
+                  <Link to="/explore">Explore</Link>
                   <Link to="/login">Login</Link>
                   <Link to="/signup">Signup</Link>
                 </>
               )}
-
-              <Link to="/explore">Explore</Link>
-
-              <Link to="/view/items">Listed Items Page</Link>
 
               {/* <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>

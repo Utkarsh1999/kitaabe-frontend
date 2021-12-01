@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Row, Col, Button, Image, Badge } from "react-bootstrap";
 
-import { Advertisement } from "../components";
+import { Advertisement, Loader } from "../components";
 
 import { getItemByItemId } from "../store/actions/item.actions";
 
@@ -40,20 +40,33 @@ const ProductPage = () => {
 
   return (
     <>
-      {loadingItem && <h1 className="mx-auto text-center">Loading...</h1>}
+      {loadingItem && (
+        <>
+          <h1 className="mx-auto text-center">Loading...</h1>
+        </>
+      )}
 
       {!loadingItem && item != null && (
         <Row className="container mt-4">
-          {console.log(item[0].image)}
           <Col>
             <Row md={12}>
               <Col md={2}>
-                {item[0].image.map((img, idx) => (
-                  <Image className="mb-2" key={idx} src={img} rounded fluid />
-                ))}
+                {item[0].image !== undefined &&
+                  item[0].image !== null &&
+                  item[0].image.map((img, idx) => (
+                    <Image className="mb-2" key={idx} src={img} rounded fluid />
+                  ))}
               </Col>
               <Col md={8}>
-                <Image className="w-h-100pc" src={item[0].image[0]} rounded />
+                {item[0].image !== undefined ? (
+                  <Image className="w-h-100pc" src={item[0].image[0]} rounded />
+                ) : (
+                  <Image
+                    className="w-h-100pc"
+                    src={details.images[0]}
+                    rounded
+                  />
+                )}
               </Col>
             </Row>
           </Col>

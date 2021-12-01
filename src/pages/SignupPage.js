@@ -113,7 +113,7 @@ const SignupPage = () => {
           </Link>
         </p>
       </Col>
-      <Col md={6} classNam="mt-4 mt-2em">
+      <Col md={6} className="mt-4 mt-2em">
         <Image src="https://picsum.photos/500/500" fluid />
       </Col>
     </div>

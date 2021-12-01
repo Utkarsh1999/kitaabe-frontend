@@ -28,7 +28,7 @@ function* putItem(action) {
     // action.payload.append("image", url);
     // console.log("url json----" + JSON.stringify(url));
     // console.log("url----" + url);
-    console.log("action.payload----" + action.payload);
+    // console.log("action.payload----" + action.payload);
     const { data } = yield call(ItemApi.saveItem, action.payload);
     // localStorage.setItem("token", data.access_token);
     yield put(saveItem.success(data));

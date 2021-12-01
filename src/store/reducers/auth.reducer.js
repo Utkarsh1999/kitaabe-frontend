@@ -56,6 +56,13 @@ export default function (state = initialState, action) {
         signingUp: false,
         errorInSignup: action.payload,
       };
+    case AuthActions.SIGNOUT:
+      return {
+        ...state,
+        authenticated: false,
+        validating: false,
+        cred: {},
+      };
     default:
       return state;
   }

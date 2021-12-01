@@ -32,7 +32,7 @@ const ItemTable = ({ items }) => {
                 </td>
                 <td>
                   {item.status == "3" ? null : (
-                    <Button className="btn btn-danger">Delete Entry</Button>
+                    <Button className="btn btn-danger">Delete</Button>
                   )}
                 </td>
               </tr>

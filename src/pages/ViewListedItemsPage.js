@@ -15,12 +15,13 @@ const ViewItemPage = () => {
   }, [cred]);
   return (
     <div>
-      <h1>
-        This page will display all the listed items of a user {cred.email} -{" "}
-        {cred._id}
-      </h1>
+      <h1>Listed Items</h1>
       <Col md={10} className="mx-auto">
-        {items && <ItemTable items={items} />}
+        {items == null ? (
+          <p>you haven't listed any items so far.</p>
+        ) : (
+          <ItemTable items={items} />
+        )}
       </Col>
     </div>
   );

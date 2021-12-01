@@ -12,7 +12,7 @@ const ListItemPage = () => {
   const [formData, setFormData] = useState({
     item_name: null,
     item_description: null,
-    image: null,
+    image: [],
     contact_info: null,
     price: null,
     seller_id: null,
@@ -40,15 +40,17 @@ const ListItemPage = () => {
   };
 
   const uploadFile = (file) => (e) => {
+    const fd = new FormData();
+    fd.append("image", e.target.files[0]);
+
     fetch("https://kitaabe.herokuapp.com/api/media/upload", {
       // Your POST endpoint
       method: "POST",
       headers: {
         // Content-Type may need to be completely **omitted**
         // or you may need something
-        "Content-Type": "multipart/form-data",
       },
-      body: e.target.files[0], // This is your file object
+      body: fd, // This is your file object
     })
       .then(
         (response) => response.json() // if the response is a JSON object
@@ -57,7 +59,7 @@ const ListItemPage = () => {
         (data) =>
           setFormData({
             ...formData,
-            image: data.url,
+            image: [data.url],
           }) // Handle the success response object
       )
       .catch(
@@ -150,7 +152,7 @@ const ListItemPage = () => {
                           <Dropdown.Item
                             as="option"
                             key={idx}
-                            value={category._id}
+                            value={category.category_name}
                             onClick={inputHandler("category_id")}
                           >
                             {category.category_name}
@@ -175,7 +177,7 @@ const ListItemPage = () => {
                           <Dropdown.Item
                             as="option"
                             key={idx}
-                            value={subCategory._id}
+                            value={subCategory.subcategory_name}
                             onClick={inputHandler("subcategory_id")}
                           >
                             {subCategory.subcategory_name}

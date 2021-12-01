@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import FilterDropdown from "./FilterDropdown";
 import ItemTable from "./ItemTable";
 import Advertisement from "./Advertisement";
+import Loader from "./Loader";
 
 import ItemCard from "./ItemCard";
 
@@ -15,4 +16,5 @@ export {
   FilterDropdown,
   ItemTable,
   Advertisement,
+  Loader,
 };
