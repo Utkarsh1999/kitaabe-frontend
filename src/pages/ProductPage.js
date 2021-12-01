@@ -44,15 +44,16 @@ const ProductPage = () => {
 
       {!loadingItem && item != null && (
         <Row className="container mt-4">
+          {console.log(item[0].image)}
           <Col>
             <Row md={12}>
               <Col md={2}>
-                {details.images.map((img, idx) => (
+                {item[0].image.map((img, idx) => (
                   <Image className="mb-2" key={idx} src={img} rounded fluid />
                 ))}
               </Col>
               <Col md={8}>
-                <Image className="w-h-100pc" src={details.images[0]} rounded />
+                <Image className="w-h-100pc" src={item[0].image[0]} rounded />
               </Col>
             </Row>
           </Col>

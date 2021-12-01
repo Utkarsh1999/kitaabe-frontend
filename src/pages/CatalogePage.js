@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Form, FormControl, Badge } from "react-bootstrap";
-import { ItemCard, FilterDropdown } from "../components";
+import { ItemCard, FilterDropdown, Advertisement } from "../components";
 
 import { getAllItems } from "../store/actions/catalogue.actions";
 
@@ -12,7 +12,7 @@ const CatalogePage = () => {
     dispatch(getAllItems.request(filterValue));
   }, []);
 
-  const { categories, subCategories, items } = useSelector(
+  const { categories, subCategories, items, promotedItems } = useSelector(
     (state) => state.catalogue
   );
 
@@ -62,7 +62,7 @@ const CatalogePage = () => {
       <h1 className="text-center"> Explore</h1>
 
       {/* filter buttons */}
-      <Row md={6} className="mx-auto" style={{ flexDirection: "row" }}>
+      <Row md={8} className="mx-auto" style={{ flexDirection: "row" }}>
         <FilterDropdown
           inputHandler={inputHandler}
           filterName="subcategory_id"
@@ -113,6 +113,18 @@ const CatalogePage = () => {
       {/* item cards */}
       <Col md={10} className="mx-auto">
         <Row className="">
+          {promotedItems &&
+            promotedItems.map((item, idx) => {
+              return (
+                <ItemCard
+                  className="mt-2 mb-2 border-yellow"
+                  key={idx}
+                  item={item}
+                  img={"https://picsum.photos/200"}
+                />
+              );
+            })}
+
           {items &&
             items.map((item, idx) => {
               return (
@@ -126,6 +138,8 @@ const CatalogePage = () => {
             })}
         </Row>
       </Col>
+
+      <Advertisement />
     </div>
   );
 };

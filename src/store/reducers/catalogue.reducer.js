@@ -2,6 +2,7 @@ import * as CatalogueActions from "../actions/catalogue.actions";
 
 const initialState = {
   items: [],
+  promotedItems: [],
   categories: [
     {
       id: "amdjfbkadjbf1",
@@ -84,7 +85,10 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loadingItems: false,
-        items: action.payload.data,
+        promotedItems: action.payload.data.filter(
+          (item) => item.promoted === "true"
+        ),
+        items: action.payload.data.filter((item) => item.promoted !== "true"),
       };
     case CatalogueActions.FETCH_ALL_ITEMS.FAILURE:
       return {

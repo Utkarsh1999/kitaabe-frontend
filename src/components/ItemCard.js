@@ -10,11 +10,15 @@ const ItemCard = (props) => {
     category_id,
     subcategory_id,
     available_in_city,
+    image,
+    promoted,
   } = props.item;
   return (
     <Col md={3} className={props.className}>
       <Card>
-        {/* <Card.Img variant="left" src={props.img} /> */}
+        {promoted && <small className="promoted-text">promoted</small>}
+        {image && <Card.Img variant="top" src={image[0]} />}
+
         <Card.Body>
           <Card.Title className="text-capitalize">
             <Link to={`/view/product/${_id}`} className="pl-0">
@@ -22,19 +26,19 @@ const ItemCard = (props) => {
             </Link>
           </Card.Title>
 
-          <Card.Subtitle className="text-capitalize text-muted text-wrap">
+          {/* <Card.Subtitle className="text-capitalize text-muted text-wrap">
             {category_id}
             {", "}
             {subcategory_id}
-          </Card.Subtitle>
+          </Card.Subtitle> */}
           <Card.Text className="text-capitalize mb-2">
-            <strong>Available Location</strong> : {available_in_city}
+            <strong>Location</strong> : {available_in_city}
           </Card.Text>
           <Card.Text className="card-desc">{item_description}</Card.Text>
           <Link
             as="button"
             to={`/view/product/${_id}`}
-            className="btn btn-warning full-btn color-primary no-border"
+            className="btn btn-primary full-btn color-primary no-border"
             size="sm"
           >
             View Item

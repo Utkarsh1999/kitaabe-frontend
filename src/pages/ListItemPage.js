@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Row, Form, Button, Dropdown } from "react-bootstrap";
+import { Col, Row, Form, Button, Dropdown, Image } from "react-bootstrap";
 
 // import actions
 import { saveItem } from "../store/actions/item.actions";
@@ -12,6 +12,7 @@ const ListItemPage = () => {
   const [formData, setFormData] = useState({
     item_name: null,
     item_description: null,
+    image: null,
     contact_info: null,
     price: null,
     seller_id: null,
@@ -24,10 +25,44 @@ const ListItemPage = () => {
 
   const inputHandler = (name) => (e) => {
     e.preventDefault();
-    setFormData({
-      ...formData,
-      [name]: e.target.value,
-    });
+    if (name == "image") {
+      console.log(e.target.files);
+      setFormData({
+        ...formData,
+        image: e.target.files[0],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: e.target.value,
+      });
+    }
+  };
+
+  const uploadFile = (file) => (e) => {
+    fetch("https://kitaabe.herokuapp.com/api/media/upload", {
+      // Your POST endpoint
+      method: "POST",
+      headers: {
+        // Content-Type may need to be completely **omitted**
+        // or you may need something
+        "Content-Type": "multipart/form-data",
+      },
+      body: e.target.files[0], // This is your file object
+    })
+      .then(
+        (response) => response.json() // if the response is a JSON object
+      )
+      .then(
+        (data) =>
+          setFormData({
+            ...formData,
+            image: data.url,
+          }) // Handle the success response object
+      )
+      .catch(
+        (error) => console.log(error) // Handle the error response object
+      );
   };
 
   const submitHandler = (e) => {
@@ -41,7 +76,7 @@ const ListItemPage = () => {
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Add Item</h1>
           <p>{JSON.stringify(formData)}</p>
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitHandler} encType="multipart/form-data">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Item Name</Form.Label>
               <Form.Control
@@ -59,6 +94,17 @@ const ListItemPage = () => {
                 placeholder="This is scientific calculator"
               />
             </Form.Group>
+            <Row>
+              <Col md={6}>
+                {formData.image && <Image src={formData.image} fluid />}
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="formFile" className="mb-3">
+                  <Form.Label>Add Item Image</Form.Label>
+                  <Form.Control type="file" onChange={uploadFile("image")} />
+                </Form.Group>
+              </Col>
+            </Row>
 
             <Form.Group className="mb-3" controlId="description">
               <Form.Label>Contact Information</Form.Label>

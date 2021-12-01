@@ -1,9 +1,14 @@
-import { Image } from "react-bootstrap";
+import { Image, Col } from "react-bootstrap";
 
 const Advertisement = () => {
   return (
-    <div>
-      <Image src="holder.js/100px250" fluid />
+    <div className="row">
+      <Col md="auto" className="mx-auto">
+        <Image
+          src="https://res.cloudinary.com/dzwj8f2jn/image/upload/v1638340154/my-ad_x0tsfn.png"
+          fluid
+        />
+      </Col>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import {
 function* putImages(action) {
   try {
     const { data } = yield call(ItemApi.uploadItemImages, action.payload);
-    // localStorage.setItem("token", data.access_token);
+
     yield put(uploadImages.success(data));
   } catch (e) {
     console.log("error:" + e);
@@ -24,6 +24,11 @@ function* putImages(action) {
 
 function* putItem(action) {
   try {
+    // const url = yield call(ItemApi.uploadItemImages, action.payload);
+    // action.payload.append("image", url);
+    // console.log("url json----" + JSON.stringify(url));
+    // console.log("url----" + url);
+    console.log("action.payload----" + action.payload);
     const { data } = yield call(ItemApi.saveItem, action.payload);
     // localStorage.setItem("token", data.access_token);
     yield put(saveItem.success(data));
@@ -53,7 +58,6 @@ function* fetchItemByItemId(action) {
 }
 
 function* itemSaga() {
-  yield takeLatest(UPLOAD_IMAGES.REQUEST, putImages);
   yield takeLatest(SAVE_ITEM.REQUEST, putItem);
   yield takeLatest(FETCH_ITEMS_BY_USERID.REQUEST, fetchItemsByUserId);
   yield takeLatest(FETCH_ITEM_BY_ITEMID.REQUEST, fetchItemByItemId);
