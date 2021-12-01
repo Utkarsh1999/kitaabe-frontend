@@ -85,17 +85,17 @@ const ListItemPage = () => {
     });
     dispatch(saveItem.request(formData));
     setFormData({
-      item_name: null,
-      item_description: null,
+      item_name: "",
+      item_description: "",
       image: [],
-      contact_info: null,
-      price: null,
-      seller_id: null,
-      available_in_city: null,
-      category_id: null,
-      subcategory_id: null,
+      contact_info: "",
+      price: "",
+      seller_id: "",
+      available_in_city: "",
+      category_id: "",
+      subcategory_id: "",
       status: "2",
-      university: null,
+      university: "",
     });
   };
 
@@ -104,18 +104,14 @@ const ListItemPage = () => {
       <Col md={6} className="mx-auto mt-4">
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Add Item</h1>
-          {!savingItem && itemId != null && (
-            <Alert variant={"success"}>
-              Item Added Successfully!
-              <Link to={`/view/product/${itemId}`}>View Item</Link>
-            </Alert>
-          )}
+
           <Form onSubmit={submitHandler} encType="multipart/form-data">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Item Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Item Name"
+                value={formData.item_name}
                 onChange={inputHandler("item_name")}
               />
             </Form.Group>
@@ -125,6 +121,7 @@ const ListItemPage = () => {
               <Form.Control
                 as="textarea"
                 rows={3}
+                value={formData.item_description}
                 onChange={inputHandler("item_description")}
                 placeholder="This is scientific calculator"
               />
@@ -145,6 +142,7 @@ const ListItemPage = () => {
               <Form.Label>Contact Information</Form.Label>
               <Form.Control
                 type="text"
+                value={formData.contact_info}
                 onChange={inputHandler("contact_info")}
                 placeholder="Contact information, e.g. contact no, or/and email address"
               />
@@ -158,6 +156,7 @@ const ListItemPage = () => {
               <Form.Label>price (in INR)</Form.Label>
               <Form.Control
                 type="text"
+                value={formData.price}
                 onChange={inputHandler("price")}
                 placeholder="for e.g. 100"
               />
@@ -167,6 +166,7 @@ const ListItemPage = () => {
               <Form.Label>Available in City</Form.Label>
               <Form.Control
                 type="text"
+                value={formData.available_in_city}
                 onChange={inputHandler("available_in_city")}
                 placeholder="Delhi/Meerut"
               />
@@ -228,6 +228,7 @@ const ListItemPage = () => {
               </Form.Label>
               <Form.Control
                 type="text"
+                value={formData.university}
                 onChange={inputHandler("university")}
                 placeholder="University of Delhi"
               />
@@ -262,6 +263,13 @@ const ListItemPage = () => {
               Add to Catalogue
             </Button>
           </Form>
+
+          {!savingItem && itemId != null && (
+            <Alert variant={"success"}>
+              Item Added Successfully!
+              <Link to={`/view/product/${itemId}`}>View Item</Link>
+            </Alert>
+          )}
         </Row>
       </Col>
     </div>

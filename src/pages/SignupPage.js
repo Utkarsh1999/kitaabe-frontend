@@ -43,7 +43,7 @@ const SignupPage = () => {
   return (
     <div className="app row">
       {authenticated ? (
-        <>{<Navigate to="/explore" />}</>
+        <>{<Navigate to="/login" />}</>
       ) : (
         <>
           <Col md={4} className="mx-auto mt-4">

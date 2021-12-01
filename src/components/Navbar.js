@@ -41,6 +41,7 @@ const NavBar = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3 nav-links">
               <Link to="/">Home</Link>
+              <Link to="/explore">Explore</Link>
               {authenticated === true ? (
                 <>
                   <Link to="/profile">My Account</Link>
@@ -55,7 +56,6 @@ const NavBar = () => {
                 </>
               ) : (
                 <>
-                  <Link to="/explore">Explore</Link>
                   <Link to="/login">Login</Link>
                   <Link to="/signup">Signup</Link>
                 </>

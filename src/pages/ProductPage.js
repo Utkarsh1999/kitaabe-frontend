@@ -46,7 +46,7 @@ const ProductPage = () => {
         </>
       )}
 
-      {!loadingItem && item != null && (
+      {!loadingItem && item.length > 0 && (
         <Row className="container mt-4">
           <Col>
             <Row md={12}>
