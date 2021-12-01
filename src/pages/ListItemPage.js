@@ -79,6 +79,10 @@ const ListItemPage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setFormData({
+      ...formData,
+      seller_id: cred._id,
+    });
     dispatch(saveItem.request(formData));
     setFormData({
       item_name: null,

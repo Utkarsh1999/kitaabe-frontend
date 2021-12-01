@@ -6,9 +6,9 @@ const initialState = {
   validating: false,
   error: null,
   cred: {
-    _id: "61a30da20b474d41842d05e7",
-    email: "ut@test.com",
-    password: "123456",
+    _id: "",
+    email: "",
+    password: "",
   },
   signingUp: false,
   errorInSignup: null,
