@@ -44,7 +44,7 @@ const NavBar = () => {
               <Link to="/explore">Explore</Link>
               {authenticated === true ? (
                 <>
-                  <Link to="/profile">My Account</Link>
+                  {/* <Link to="/profile">My Account</Link> */}
                   <Link to="/item/new">List Item</Link>
                   <Link to="/view/items">Listed Items Page</Link>
                   <Button

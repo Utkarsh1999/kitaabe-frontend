@@ -15,6 +15,9 @@ export const ItemApi = {
     console.log("-----------ITEM: " + JSON.stringify(item));
     return axiosInstance.post("api/item", item);
   },
+  updateItem: (item) => {
+    return axiosInstance.post("/api/item/update", item);
+  },
   getItemByItemId: (itemId) => {
     return axiosInstance.get(`/api/item/id/${itemId}`);
   },

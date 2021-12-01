@@ -1,6 +1,7 @@
 import { createRequestTypes, action } from "../../utils/redux";
 
 export const SAVE_ITEM = createRequestTypes("SAVE_ITEM");
+export const UPDATE_ITEM = createRequestTypes("UPDATE_ITEM");
 export const UPLOAD_IMAGES = createRequestTypes("UPLOAD_IMAGES");
 export const FETCH_ITEMS_BY_USERID = createRequestTypes("FETCH_ITEMS");
 export const FETCH_ITEM_BY_ITEMID = createRequestTypes("FETCH_ITEMS_BY_ITEMID");
@@ -10,6 +11,13 @@ export const saveItem = {
   success: (data) => action(SAVE_ITEM.SUCCESS, data),
   failure: (error) => action(SAVE_ITEM.FAILURE, error),
 };
+
+export const updateItem = {
+  request: (item) => action(UPDATE_ITEM.REQUEST, item),
+  success: (data) => action(UPDATE_ITEM.SUCCESS, data),
+  failure: (error) => action(UPDATE_ITEM.FAILURE, error),
+};
+
 export const uploadImages = {
   request: (image) => action(SAVE_ITEM.REQUEST, image),
   success: (data) => action(SAVE_ITEM.SUCCESS, data),

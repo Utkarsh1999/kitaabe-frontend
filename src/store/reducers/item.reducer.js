@@ -9,10 +9,12 @@ const initialState = {
   errorItems: null,
   errorSavingItems: null,
   errorUploadingImages: null,
+  errorUpdatingItem: null,
   savingItem: false,
   savingImages: false,
   loadingItems: false,
   loadingItem: false,
+  updatingItem: false,
 };
 
 export default function (state = initialState, action) {
@@ -35,6 +37,23 @@ export default function (state = initialState, action) {
         ...state,
         savingItem: false,
         errorSavingItems: action.payload,
+      };
+    case ItemActions.UPDATE_ITEM.REQUEST:
+      return {
+        ...state,
+        updatingItem: true,
+      };
+    case ItemActions.UPDATE_ITEM.SUCCESS:
+      return {
+        ...state,
+
+        updatingItem: false,
+      };
+    case ItemActions.UPDATE_ITEM.FAILURE:
+      return {
+        ...state,
+        updatingItem: false,
+        errorUpdatingItem: action.payload,
       };
     case ItemActions.UPLOAD_IMAGES.REQUEST:
       return {

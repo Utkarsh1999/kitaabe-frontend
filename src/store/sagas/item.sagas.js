@@ -2,10 +2,12 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { ItemApi } from "../../services/item.service";
 import {
   SAVE_ITEM,
+  UPDATE_ITEM,
   UPLOAD_IMAGES,
   FETCH_ITEMS_BY_USERID,
   FETCH_ITEM_BY_ITEMID,
   saveItem,
+  updateItem,
   uploadImages,
   getItemsByUserId,
   getItemByItemId,
@@ -37,6 +39,16 @@ function* putItem(action) {
   }
 }
 
+function* putUpdateItem(action) {
+  try {
+    const { data } = yield call(ItemApi.updateItem, action.payload);
+    // localStorage.setItem("token", data.access_token);
+    yield put(updateItem.success(data));
+  } catch (e) {
+    yield put(updateItem.failure(e.data));
+  }
+}
+
 function* fetchItemsByUserId(action) {
   try {
     const { data } = yield call(ItemApi.getItemsByUserId, action.payload);
@@ -59,6 +71,7 @@ function* fetchItemByItemId(action) {
 
 function* itemSaga() {
   yield takeLatest(SAVE_ITEM.REQUEST, putItem);
+  yield takeLatest(UPDATE_ITEM.REQUEST, putUpdateItem);
   yield takeLatest(FETCH_ITEMS_BY_USERID.REQUEST, fetchItemsByUserId);
   yield takeLatest(FETCH_ITEM_BY_ITEMID.REQUEST, fetchItemByItemId);
 }

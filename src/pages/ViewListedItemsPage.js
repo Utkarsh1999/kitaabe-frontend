@@ -15,7 +15,7 @@ const ViewItemPage = () => {
   }, [cred]);
   return (
     <div>
-      <h1>Listed Items</h1>
+      <h1 className="text-center mt-4 mb-4">Listed Items</h1>
       <Col md={10} className="mx-auto">
         {items == null ? (
           <p>you haven't listed any items so far.</p>
