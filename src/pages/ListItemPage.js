@@ -1,13 +1,22 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Col, Row, Form, Button, Dropdown, Image } from "react-bootstrap";
-
+import {
+  Col,
+  Row,
+  Form,
+  Button,
+  Dropdown,
+  Image,
+  Alert,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 // import actions
 import { saveItem } from "../store/actions/item.actions";
 
 const ListItemPage = () => {
   const dispatch = useDispatch();
   const { categories, subCategories } = useSelector((state) => state.catalogue);
+  const { savingItem, itemId } = useSelector((state) => state.item);
 
   const [formData, setFormData] = useState({
     item_name: null,
@@ -70,6 +79,19 @@ const ListItemPage = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveItem.request(formData));
+    setFormData({
+      item_name: null,
+      item_description: null,
+      image: [],
+      contact_info: null,
+      price: null,
+      seller_id: null,
+      available_in_city: null,
+      category_id: null,
+      subcategory_id: null,
+      status: "2",
+      university: null,
+    });
   };
 
   return (
@@ -77,7 +99,12 @@ const ListItemPage = () => {
       <Col md={6} className="mx-auto mt-4">
         <Row xs={1} md={12} className="g-2 mt-2 mb-2">
           <h1 className="text-center">Add Item</h1>
-          <p>{JSON.stringify(formData)}</p>
+          {!savingItem && itemId != null && (
+            <Alert variant={"success"}>
+              Item Added Successfully!
+              <Link to={`/view/product/${itemId}`}>View Item</Link>
+            </Alert>
+          )}
           <Form onSubmit={submitHandler} encType="multipart/form-data">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Item Name</Form.Label>
@@ -91,7 +118,8 @@ const ListItemPage = () => {
             <Form.Group className="mb-3" controlId="description">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 onChange={inputHandler("item_description")}
                 placeholder="This is scientific calculator"
               />

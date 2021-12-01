@@ -2,6 +2,7 @@ import * as ItemActions from "../actions/item.actions";
 
 const initialState = {
   item: null,
+  itemId: null,
   items: [],
   images: [],
   errorItem: null,
@@ -25,6 +26,8 @@ export default function (state = initialState, action) {
       console.log("data: " + action.payload["data"]);
       return {
         ...state,
+        item: action.payload.status,
+        itemId: action.payload._id,
         savingItem: false,
       };
     case ItemActions.SAVE_ITEM.FAILURE:

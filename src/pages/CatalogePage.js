@@ -66,14 +66,15 @@ const CatalogePage = () => {
       <Col md={10} className="mx-auto row">
         <FilterDropdown
           inputHandler={inputHandler}
-          filterName="subcategory_id"
-          filterItems={subCategories}
+          filterName="Category"
+          filterItems={categories}
         />
         <FilterDropdown
           inputHandler={inputHandler}
-          filterName="category_id"
-          filterItems={categories}
+          filterName="Sub Category"
+          filterItems={subCategories}
         />
+
         <Col md="6" className="mt-4 mb-4 mr-2">
           <Form className="d-flex">
             <FormControl

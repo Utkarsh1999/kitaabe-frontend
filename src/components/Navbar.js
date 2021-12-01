@@ -20,14 +20,14 @@ const NavBar = () => {
   const { authenticated } = useSelector((state) => state.auth);
 
   return (
-    <Navbar bg="dark" expand={false}>
+    <Navbar bg="dark" variant="dark" expand={false}>
       <Container fluid>
         <Navbar.Brand>
           <Link to="/" className="text-light">
             📚<strong>KITAABE</strong>
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Toggle aria-controls="offcanvasNavbar" className="text-light" />
         <Navbar.Offcanvas
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
