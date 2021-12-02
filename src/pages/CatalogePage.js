@@ -66,12 +66,14 @@ const CatalogePage = () => {
       <Col md={10} className="mx-auto row">
         <FilterDropdown
           inputHandler={inputHandler}
-          filterName="Category"
+          displayName="Category"
+          filterName="category_id"
           filterItems={categories}
         />
         <FilterDropdown
           inputHandler={inputHandler}
-          filterName="Sub Category"
+          displayName="Sub Category"
+          filterName="subcategory_id"
           filterItems={subCategories}
         />
 

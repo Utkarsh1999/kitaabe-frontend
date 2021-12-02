@@ -1,10 +1,15 @@
 import { DropdownButton, Dropdown, Col } from "react-bootstrap";
 
-const FilterDropdown = ({ filterName, filterItems, inputHandler }) => {
+const FilterDropdown = ({
+  filterName,
+  filterItems,
+  inputHandler,
+  displayName,
+}) => {
   if (filterName !== undefined) {
     return (
       <Col md="auto" className="mt-4 mb-4 mr-2">
-        <DropdownButton id="dropdown-item-button" title={filterName}>
+        <DropdownButton id="dropdown-item-button" title={displayName}>
           {filterItems !== undefined &&
             filterItems.map((item, idx) => {
               return (
