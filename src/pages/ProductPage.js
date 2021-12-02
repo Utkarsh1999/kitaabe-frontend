@@ -16,7 +16,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     dispatch(getItemByItemId.request(itemId));
-  }, [itemId]);
+  }, []);
 
   const { item, loadingItem } = useSelector((state) => state.item);
   const { authenticated } = useSelector((state) => state.auth);
@@ -46,7 +46,7 @@ const ProductPage = () => {
         </>
       )}
 
-      {!loadingItem && item.length > 0 && (
+      {!loadingItem && item !== null && item.length > 0 && (
         <Row className="container mt-4">
           <Col>
             <Row md={12}>
