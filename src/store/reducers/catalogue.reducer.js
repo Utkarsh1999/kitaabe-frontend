@@ -95,6 +95,8 @@ export default function (state = initialState, action) {
         ...state,
         loadingItems: false,
         errorInItems: action.payload,
+        promotedItems: [],
+        items: [],
       };
     default:
       return state;

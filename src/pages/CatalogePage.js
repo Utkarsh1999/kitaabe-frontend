@@ -12,9 +12,8 @@ const CatalogePage = () => {
     dispatch(getAllItems.request(filterValue));
   }, []);
 
-  const { categories, subCategories, items, promotedItems } = useSelector(
-    (state) => state.catalogue
-  );
+  const { categories, subCategories, items, promotedItems, loadingItems } =
+    useSelector((state) => state.catalogue);
 
   const [pills, setPills] = useState({
     category_id: null,
@@ -115,6 +114,17 @@ const CatalogePage = () => {
           </Badge>
         </Col>
       </Col>
+
+      {/* loading item */}
+      {loadingItems === true ? (
+        <h1 className="text-center">Loading Items...</h1>
+      ) : null}
+
+      {loadingItems == false &&
+        items.length === 0 &&
+        promotedItems.length === 0 && (
+          <h1 className="text-center">No Items match to applied filters</h1>
+        )}
 
       {/* item cards */}
       <Col md={10} className="mx-auto">
