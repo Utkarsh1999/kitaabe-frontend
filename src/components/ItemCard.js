@@ -7,11 +7,13 @@ const ItemCard = (props) => {
     _id,
     item_name,
     item_description,
+    price,
     category_id,
     subcategory_id,
     available_in_city,
     image,
     promoted,
+    university,
   } = props.item;
   return (
     <Col md={3} className={props.className}>
@@ -26,13 +28,14 @@ const ItemCard = (props) => {
             </Link>
           </Card.Title>
 
-          {/* <Card.Subtitle className="text-capitalize text-muted text-wrap">
-            {category_id}
-            {", "}
-            {subcategory_id}
-          </Card.Subtitle> */}
-          <Card.Text className="text-capitalize mb-2">
+          <Card.Subtitle className="text-capitalize text-muted text-wrap">
+            <strong>Price:</strong> ₹{price}/-
+          </Card.Subtitle>
+          <Card.Text className="text-capitalize mb-0">
             <strong>Location</strong> : {available_in_city}
+          </Card.Text>
+          <Card.Text className="text-capitalize mt-0">
+            <strong>University</strong> : {university}
           </Card.Text>
           <Card.Text className="card-desc">{item_description}</Card.Text>
           <Link

@@ -168,7 +168,7 @@ const ListItemPage = () => {
                 type="text"
                 value={formData.available_in_city}
                 onChange={inputHandler("available_in_city")}
-                placeholder="Delhi/Meerut"
+                placeholder="for e.g. Delhi/Meerut"
               />
             </Form.Group>
             <Row>

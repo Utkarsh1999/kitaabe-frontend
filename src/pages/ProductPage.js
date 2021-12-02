@@ -12,6 +12,7 @@ import { getItemByItemId } from "../store/actions/item.actions";
 //this component need productId in urlparam
 const ProductPage = () => {
   const dispatch = useDispatch();
+
   const { itemId } = useParams();
 
   useEffect(() => {
