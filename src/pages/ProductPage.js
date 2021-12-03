@@ -84,6 +84,9 @@ const ProductPage = () => {
               <h5>
                 <strong>{item[0].category_id}</strong>
               </h5>
+              <h5>
+                <strong>Available in: {item[0].available_in_city}</strong>
+              </h5>
               <p>{item[0].item_description}</p>
 
               <hr />
